@@ -16,13 +16,13 @@ def merge_one(src_img, dst_img, alpha):
                     out_img=out_img,
                     face_area=face_area,
                     alpha=alpha,
-                    k_size=(15, 10),
+                    k_size=(10, 5),
                     mat_multiple=0.95)
     return out_img
 
 
 # 要融合的图片下载一次就够了——用户上传的图片
-dst_img = "/home/hadoop/Desktop/face_merge_master/images/smallgirl.jpg"
+dst_img = "/home/hadoop/Desktop/face_merge_master/images/MSC.png"
 # 取得model的图片,下载一次就够了
 src_img = "/home/hadoop/Desktop/face_merge_master/images/model.jpg"
 output_image = merge_one(src_img,dst_img, 1)

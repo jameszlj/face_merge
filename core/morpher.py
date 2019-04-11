@@ -200,8 +200,8 @@ def face_merge(src_img, dst_img, out_img,
     cv2.imwrite("images/2.jpg", dst_img)
     dst_img = correct_color(src_img, dst_img, src_matrix[core.FACE_POINTS])
     # 删除掉临时生成的文件
-    # os.remove(trans_file)
-    # os.remove(morph_file)
+    os.remove(trans_file)
+    os.remove(morph_file)
 
     cv2.imwrite(out_img, dst_img)
 

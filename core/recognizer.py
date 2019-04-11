@@ -8,31 +8,27 @@ import json
 import os
 import requests
 import numpy as np
+
 # from core.youtuUtil import getFaceDataFromYoutu
-COLOUR_CORRECT_BLUR_FRAC =0.4
+COLOUR_CORRECT_BLUR_FRAC = 0.6
 PREDICTOR_PATH = "/home/hadoop/Desktop/dlib-19.17/shape_predictor_68_face_landmarks.dat"
 
-FACE_POINTS = list(range(17, 68))
+FACE_POINTS = list(range(0, 68))
 MOUTH_POINTS = list(range(48, 61))
-RIGHT_BROW_POINTS = list(range(17, 22))
-LEFT_BROW_POINTS = list(range(22, 27))
-RIGHT_EYE_POINTS = list(range(36, 42))
-LEFT_EYE_POINTS = list(range(42, 48))
+RIGHT_BROW_POINTS = list(range(17, 21))
+LEFT_BROW_POINTS = list(range(22, 26))
+RIGHT_EYE_POINTS = list(range(36, 41))
+LEFT_EYE_POINTS = list(range(42, 47))
 NOSE_POINTS = list(range(27, 35))
-JAW_POINTS = list(range(0, 17))
-
-
-LEFT_FACE = list(range(42, 48)) + list(range(22, 27))
-RIGHT_FACE = list(range(36, 42)) + list(range(17, 22))
+JAW_POINTS = list(range(0, 16))
 
 JAW_END = 17
 FACE_START = 0
-FACE_END = 68
+FACE_END = 67
 
 OVERLAY_POINTS = [
-    LEFT_BROW_POINTS+LEFT_EYE_POINTS,
-    RIGHT_BROW_POINTS+RIGHT_EYE_POINTS,
-    RIGHT_FACE,
+    LEFT_BROW_POINTS + LEFT_EYE_POINTS,
+    RIGHT_BROW_POINTS + RIGHT_EYE_POINTS,
     JAW_POINTS,
 ]
 
@@ -47,7 +43,7 @@ def get_landmarks(im):
         raise 'too many face detected in image {}'.format(im)
     if len(rects) == 0:
         raise 'No face detected in image {}'.format(im)
-    points =[]
+    points = []
     for p in predictor(im, rects[0]).parts():
         points.append([p.x, p.y])
 
@@ -79,5 +75,3 @@ def matrix_rectangle(left, top, width, height):
     ]
 
     return pointer
-
-
